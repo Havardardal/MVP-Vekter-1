@@ -558,6 +558,12 @@
   color: #555;
 }
 
+.criticality-hint {
+  font-size: 0.75rem;
+  color: #aaa;
+  font-style: italic;
+}
+
 .criticality-btn {
   width: 36px;
   height: 36px;

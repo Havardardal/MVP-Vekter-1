@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CriticalitySelector from "./CriticalitySelector";
+import CriticalityDisplay from "./CriticalityDisplay";
 import ImageUploadMock from "./ImageUploadMock";
 
 export default function ChecklistItem({ item, entry, onChange, locationName }) {
@@ -14,13 +14,17 @@ export default function ChecklistItem({ item, entry, onChange, locationName }) {
       next.image = null;
       setReported(false);
     }
+    if (status === "avvik") {
+      // Auto-set pre-determined criticality from the item definition
+      next.criticality = item.criticality ?? null;
+    }
     onChange(next);
     setExpanded(status === "avvik");
   }
 
   function setField(field, value) {
     onChange({ ...entry, [field]: value });
-    setReported(false); // reset if user edits after reporting
+    setReported(false);
   }
 
   function handleReport() {
@@ -35,10 +39,12 @@ export default function ChecklistItem({ item, entry, onChange, locationName }) {
     console.log("=== AVVIK RAPPORTERT ===");
     console.log(JSON.stringify(avvikReport, null, 2));
     setReported(true);
+    setExpanded(false);
   }
 
   const isAvvik = entry.status === "avvik";
-  const isHandled = isAvvik && (entry.comment.trim().length > 0 || entry.criticality !== null);
+  // Criticality is pre-set, so only comment is required
+  const isHandled = isAvvik && entry.comment.trim().length > 0;
 
   return (
     <div className={`checklist-item${isAvvik ? " has-avvik" : ""}${entry.status === "ok" ? " is-ok" : ""}`}>
@@ -88,10 +94,7 @@ export default function ChecklistItem({ item, entry, onChange, locationName }) {
                 />
               </label>
 
-              <CriticalitySelector
-                value={entry.criticality}
-                onChange={(val) => setField("criticality", val)}
-              />
+              <CriticalityDisplay level={entry.criticality ?? item.criticality} />
 
               <ImageUploadMock
                 image={entry.image}
