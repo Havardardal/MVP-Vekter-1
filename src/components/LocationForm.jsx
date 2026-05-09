@@ -86,6 +86,7 @@ export default function LocationForm({ location, locationState, onUpdate, onBack
                     item={item}
                     entry={locationState[item.id]}
                     onChange={(entry) => handleItemChange(item.id, entry)}
+                    locationName={location.name}
                   />
                 ))}
               </div>
