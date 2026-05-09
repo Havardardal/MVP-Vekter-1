@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ChecklistItem from "./ChecklistItem";
 
 /**
@@ -13,10 +14,36 @@ export function isItemDone(entry) {
   return false;
 }
 
+/** Group checklist items by their `section` field, preserving order. */
+function groupBySection(checklist) {
+  const sections = [];
+  const seen = new Map();
+  for (const item of checklist) {
+    const key = item.section ?? "Annet";
+    if (!seen.has(key)) {
+      seen.set(key, []);
+      sections.push({ title: key, items: seen.get(key) });
+    }
+    seen.get(key).push(item);
+  }
+  return sections;
+}
+
 export default function LocationForm({ location, locationState, onUpdate, onBack }) {
   const allDone = location.checklist.every((item) =>
     isItemDone(locationState[item.id])
   );
+
+  const sections = groupBySection(location.checklist);
+
+  // All sections collapsed by default
+  const [collapsed, setCollapsed] = useState(() =>
+    Object.fromEntries(sections.map((s) => [s.title, true]))
+  );
+
+  function toggleSection(title) {
+    setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
+  }
 
   function handleItemChange(itemId, entry) {
     onUpdate(location.id, itemId, entry);
@@ -30,16 +57,42 @@ export default function LocationForm({ location, locationState, onUpdate, onBack
 
       <h2 className="location-form-title">{location.name}</h2>
 
-      <div className="checklist">
-        {location.checklist.map((item) => (
-          <ChecklistItem
-            key={item.id}
-            item={item}
-            entry={locationState[item.id]}
-            onChange={(entry) => handleItemChange(item.id, entry)}
-          />
-        ))}
-      </div>
+      {sections.map((section) => {
+        const sectionDone = section.items.every((item) =>
+          isItemDone(locationState[item.id])
+        );
+        const isCollapsed = collapsed[section.title];
+        return (
+          <div key={section.title} className="checklist-section">
+            <button
+              type="button"
+              className={`checklist-section-header${sectionDone ? " section-done" : ""}`}
+              onClick={() => toggleSection(section.title)}
+              aria-expanded={!isCollapsed}
+            >
+              <span className="checklist-section-title">{section.title}</span>
+              <span className="checklist-section-count">
+                {section.items.filter((i) => isItemDone(locationState[i.id])).length}
+                /{section.items.length}
+                {sectionDone && <span className="section-done-badge">✔</span>}
+                <span className="section-chevron">{isCollapsed ? "▶" : "▼"}</span>
+              </span>
+            </button>
+            {!isCollapsed && (
+              <div className="checklist">
+                {section.items.map((item) => (
+                  <ChecklistItem
+                    key={item.id}
+                    item={item}
+                    entry={locationState[item.id]}
+                    onChange={(entry) => handleItemChange(item.id, entry)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
 
       {allDone && (
         <div className="form-complete-banner">

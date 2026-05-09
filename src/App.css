@@ -182,6 +182,69 @@
   margin: 0 0 20px;
 }
 
+/* ── Checklist Sections ──────────────────────────────── */
+.checklist-section {
+  margin-bottom: 20px;
+}
+
+.checklist-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #e8eaf6;
+  border-left: 4px solid #3949ab;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 14px;
+  margin-bottom: 2px;
+  transition: background 0.15s;
+  cursor: pointer;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  text-align: left;
+}
+
+.checklist-section-header:hover {
+  background: #c5cae9;
+}
+
+.checklist-section-header.section-done {
+  background: #e8f5e9;
+  border-left-color: #2e7d32;
+}
+
+.checklist-section-header.section-done:hover {
+  background: #c8e6c9;
+}
+
+.checklist-section-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #1a1a2e;
+  letter-spacing: 0.01em;
+}
+
+.checklist-section-count {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-done-badge {
+  color: #2e7d32;
+  font-size: 1rem;
+}
+
+.section-chevron {
+  font-size: 0.7rem;
+  color: #666;
+  margin-left: 4px;
+}
+
 .form-complete-banner {
   margin-top: 20px;
   background: #e8f5e9;
