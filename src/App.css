@@ -1,0 +1,476 @@
+/* ── Layout ─────────────────────────────────────────── */
+.app-shell {
+  min-height: 100dvh;
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 48px;
+  box-sizing: border-box;
+}
+
+/* ── Route Dashboard ─────────────────────────────────── */
+.route-dashboard {
+  width: 100%;
+  max-width: 540px;
+}
+
+.dashboard-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+/* ── Progress Bar ────────────────────────────────────── */
+.progress-bar-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+.progress-bar-label {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.progress-bar-track {
+  background: #e0e0e0;
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #2e7d32;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.progress-bar-pct {
+  font-size: 0.8rem;
+  color: #2e7d32;
+  font-weight: 600;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ── Location List ───────────────────────────────────── */
+.location-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.location-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-left: 5px solid #bdbdbd;
+}
+
+.location-card.status-not-started { border-left-color: #bdbdbd; }
+.location-card.status-in-progress { border-left-color: #f57c00; }
+.location-card.status-completed   { border-left-color: #2e7d32; }
+
+.location-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.location-card-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a1a2e;
+}
+
+.location-card-status {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.location-card-status.status-not-started { color: #9e9e9e; }
+.location-card-status.status-in-progress { color: #f57c00; }
+.location-card-status.status-completed   { color: #2e7d32; }
+
+.location-open-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #1565c0;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.location-open-btn:hover { background: #0d47a1; }
+
+/* ── Submit ──────────────────────────────────────────── */
+.submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #2e7d32;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover { background: #1b5e20; }
+
+.submitted-banner {
+  margin-top: 24px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* ── Location Form ───────────────────────────────────── */
+.location-form {
+  width: 100%;
+  max-width: 540px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #1565c0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.back-btn:hover { text-decoration: underline; }
+
+.location-form-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 20px;
+}
+
+.form-complete-banner {
+  margin-top: 20px;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-weight: 600;
+}
+
+/* ── Checklist ───────────────────────────────────────── */
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checklist-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  border-left: 5px solid #e0e0e0;
+  transition: border-left-color 0.2s;
+}
+
+.checklist-item.is-ok      { border-left-color: #2e7d32; }
+.checklist-item.has-avvik  { border-left-color: #c62828; }
+
+.checklist-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.checklist-item-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  flex: 1 1 180px;
+}
+
+.checklist-item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.status-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.status-btn.ok {
+  background: #f1f8e9;
+  color: #2e7d32;
+  border-color: #a5d6a7;
+}
+.status-btn.ok.active, .status-btn.ok:hover {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #2e7d32;
+}
+
+.status-btn.avvik {
+  background: #fff3e0;
+  color: #e65100;
+  border-color: #ffcc80;
+}
+.status-btn.avvik.active, .status-btn.avvik:hover {
+  background: #c62828;
+  color: #fff;
+  border-color: #c62828;
+}
+
+/* ── Avvik Details ───────────────────────────────────── */
+.avvik-details {
+  margin-top: 12px;
+  border-top: 1px dashed #f0a0a0;
+  padding-top: 12px;
+}
+
+.avvik-toggle {
+  background: none;
+  border: none;
+  color: #c62828;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.avvik-toggle:hover { text-decoration: underline; }
+
+.avvik-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.avvik-comment {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+  box-sizing: border-box;
+  background: #fafafa;
+}
+
+.avvik-comment:focus {
+  outline: 2px solid #1565c0;
+  outline-offset: 1px;
+}
+
+/* ── Criticality Selector ────────────────────────────── */
+.criticality-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.criticality-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.criticality-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: #fafafa;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.criticality-btn.level-1 { color: #2e7d32; }
+.criticality-btn.level-2 { color: #558b2f; }
+.criticality-btn.level-3 { color: #f57f17; }
+.criticality-btn.level-4 { color: #e65100; }
+.criticality-btn.level-5 { color: #b71c1c; }
+
+.criticality-btn.selected,
+.criticality-btn:hover {
+  color: #fff;
+  border-color: currentColor;
+}
+.criticality-btn.level-1.selected, .criticality-btn.level-1:hover { background: #2e7d32; border-color: #2e7d32; }
+.criticality-btn.level-2.selected, .criticality-btn.level-2:hover { background: #558b2f; border-color: #558b2f; }
+.criticality-btn.level-3.selected, .criticality-btn.level-3:hover { background: #f57f17; border-color: #f57f17; }
+.criticality-btn.level-4.selected, .criticality-btn.level-4:hover { background: #e65100; border-color: #e65100; }
+.criticality-btn.level-5.selected, .criticality-btn.level-5:hover { background: #b71c1c; border-color: #b71c1c; }
+
+/* ── Image Upload Mock ───────────────────────────────── */
+.image-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.image-upload.mock-empty {
+  border: 2px dashed #bdbdbd;
+  color: #757575;
+  background: #fafafa;
+  transition: border-color 0.15s;
+}
+.image-upload.mock-empty:hover { border-color: #1565c0; color: #1565c0; }
+
+.image-upload.mock-uploaded {
+  border: 2px solid #a5d6a7;
+  color: #2e7d32;
+  background: #f1f8e9;
+}
+
+.image-icon { font-size: 1.1rem; }
+
+.image-filename {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image-remove-btn {
+  background: none;
+  border: none;
+  color: #c62828;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+}
+.image-remove-btn:hover { text-decoration: underline; }
+
+/* ── Criticality Info Box ────────────────────────────── */
+.criticality-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.criticality-info {
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  border-left: 5px solid #bdbdbd;
+  background: #fafafa;
+  position: relative;
+}
+
+.criticality-info.level-1-info { border-left-color: #2e7d32; background: #f1f8e9; }
+.criticality-info.level-2-info { border-left-color: #558b2f; background: #f9fbe7; }
+.criticality-info.level-3-info { border-left-color: #f57f17; background: #fff8e1; }
+.criticality-info.level-4-info { border-left-color: #e65100; background: #fff3e0; }
+.criticality-info.level-5-info { border-left-color: #b71c1c; background: #ffebee; }
+
+.criticality-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.criticality-info-header strong {
+  font-size: 0.9rem;
+  color: #1a1a2e;
+}
+
+.criticality-info-close {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  color: #888;
+  cursor: pointer;
+  padding: 0 0 0 8px;
+  line-height: 1;
+}
+.criticality-info-close:hover { color: #333; }
+
+.criticality-info-desc {
+  margin: 0 0 8px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.criticality-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  background: #c62828;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.criticality-contact-link:hover { background: #b71c1c; }
+
