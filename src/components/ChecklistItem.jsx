@@ -73,51 +73,53 @@ export default function ChecklistItem({ item, entry, onChange, locationName }) {
 
       {isAvvik && (
         <div className="avvik-details">
-          <button
-            type="button"
-            className="avvik-toggle"
-            onClick={() => setExpanded((v) => !v)}
-          >
-            {expanded ? "▲ Skjul detaljer" : "▼ Vis detaljer"}
-          </button>
-
-          {expanded && (
-            <div className="avvik-fields">
-              <label className="field-label">
-                Kommentar*
-                <textarea
-                  className="avvik-comment"
-                  rows={3}
-                  placeholder="Beskriv avviket..."
-                  value={entry.comment}
-                  onChange={(e) => setField("comment", e.target.value)}
-                />
-              </label>
-
-              <CriticalityDisplay level={entry.criticality ?? item.criticality} />
-
-              <ImageUploadMock
-                image={entry.image}
-                onUpload={(val) => setField("image", val)}
-                onRemove={() => setField("image", null)}
-              />
-
-              {isHandled && (
-                reported ? (
-                  <div className="avvik-reported-banner">
-                    ✅ Avvik innrapportert
-                  </div>
-                ) : (
-                  <button
-                    type="button"
-                    className="avvik-report-btn"
-                    onClick={handleReport}
-                  >
-                    📤 Send inn avvik nå
-                  </button>
-                )
-              )}
+          {reported ? (
+            <div className="avvik-reported-banner">
+              ✅ Avvik innrapportert
             </div>
+          ) : (
+            <>
+              <button
+                type="button"
+                className="avvik-toggle"
+                onClick={() => setExpanded((v) => !v)}
+              >
+                {expanded ? "▲ Skjul detaljer" : "▼ Vis detaljer"}
+              </button>
+
+              {expanded && (
+                <div className="avvik-fields">
+                  <label className="field-label">
+                    Kommentar*
+                    <textarea
+                      className="avvik-comment"
+                      rows={3}
+                      placeholder="Beskriv avviket..."
+                      value={entry.comment}
+                      onChange={(e) => setField("comment", e.target.value)}
+                    />
+                  </label>
+
+                  <CriticalityDisplay level={entry.criticality ?? item.criticality} />
+
+                  <ImageUploadMock
+                    image={entry.image}
+                    onUpload={(val) => setField("image", val)}
+                    onRemove={() => setField("image", null)}
+                  />
+
+                  {isHandled && (
+                    <button
+                      type="button"
+                      className="avvik-report-btn"
+                      onClick={handleReport}
+                    >
+                      📤 Send inn avvik nå
+                    </button>
+                  )}
+                </div>
+              )}
+            </>
           )}
         </div>
       )}
