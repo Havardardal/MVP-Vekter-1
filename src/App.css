@@ -401,6 +401,7 @@
 }
 
 .checklist-item {
+  position: relative;
   background: #fff;
   border-radius: 12px;
   padding: 16px 18px;
@@ -416,20 +417,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
+  padding-right: 36px;
 }
 
 .checklist-item-label {
   font-weight: 600;
   font-size: 0.95rem;
   color: #1a1a2e;
-  flex: 1 1 180px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .checklist-item-actions {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .status-btn {
@@ -511,6 +516,200 @@
   text-align: center;
   margin-top: 4px;
 }
+
+.avvik-reported-banner {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ── Flag button ─────────────────────────────────────── */
+.item-menu-corner {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+}
+
+.item-menu-wrapper {
+  position: relative;
+}
+
+.flag-btn {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  cursor: pointer;
+  color: #bdbdbd;
+  transition: color 0.15s;
+  line-height: 1;
+}
+.flag-btn:hover,
+.flag-btn.active {
+  color: #555;
+}
+
+.item-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  min-width: 200px;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.item-menu-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  background: none;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+.item-menu-option:hover {
+  background: #f5f5f5;
+}
+
+.flag-icon-badge {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.checklist-item.is-flagged {
+  border-left-color: #e65100;
+  opacity: 0.85;
+}
+
+.flag-reported-banner {
+  margin-top: 10px;
+  background: #fff3e0;
+  color: #e65100;
+  border: 1px solid #ffcc80;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ── Flag modal ──────────────────────────────────────── */
+.flag-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 200;
+}
+
+.flag-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.flag-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.flag-modal-icon { font-size: 1.3rem; }
+
+.flag-modal-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+  flex: 1;
+}
+
+.flag-modal-close {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+}
+.flag-modal-close:hover { color: #333; }
+
+.flag-modal-item-label {
+  font-size: 0.83rem;
+  color: #888;
+  margin: 0 0 8px;
+}
+.flag-modal-item-label em {
+  font-style: normal;
+  color: #1a1a2e;
+  font-weight: 600;
+}
+
+.flag-modal-desc {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.flag-modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.flag-cancel-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: #555;
+}
+.flag-cancel-btn:hover { background: #f5f5f5; }
+
+.flag-submit-btn {
+  flex: 2;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #e65100;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.flag-submit-btn:hover:not(:disabled) { background: #bf360c; }
+.flag-submit-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .avvik-fields {
   display: flex;

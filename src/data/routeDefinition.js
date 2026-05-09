@@ -88,6 +88,8 @@ export function buildInitialState() {
         comment: "",
         criticality: null, // 1–5
         image: null, // mock: 'image_uploaded' | null
+        flagged: false,
+        flagComment: "",
       };
     });
   });

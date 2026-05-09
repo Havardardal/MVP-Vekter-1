@@ -6,6 +6,7 @@ import ChecklistItem from "./ChecklistItem";
  * An item is "done" when status is "ok" OR (status is "avvik" and it's handled).
  */
 export function isItemDone(entry) {
+  if (entry.flagged) return true;
   if (!entry.status) return false;
   if (entry.status === "ok") return true;
   if (entry.status === "avvik") {
