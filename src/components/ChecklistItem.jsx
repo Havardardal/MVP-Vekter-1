@@ -78,7 +78,7 @@ export default function ChecklistItem({ item, entry, onChange, locationName }) {
           {expanded && (
             <div className="avvik-fields">
               <label className="field-label">
-                Kommentar
+                Kommentar*
                 <textarea
                   className="avvik-comment"
                   rows={3}
